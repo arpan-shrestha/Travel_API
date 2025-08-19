@@ -1,0 +1,1 @@
+his project is a Travel Trip API built with Django REST Framework and PostgreSQL. Its main purpose is to fetch travel packages from the Antholidays website, parse key details like title, duration, nights, difficulty, and URL, store them in the database, and expose them via REST API endpoints.
