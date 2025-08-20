@@ -1,8 +1,9 @@
 from rest_framework import viewsets
-from .models import Trip
+from .models import Trip, Activities
+from .serializers import TripSerializer, ActivitiesSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .fetch import fetch_trips
+from .fetch import fetch_trips, fetch_activities
 from rest_framework import serializers
 
 # Create your views here.
@@ -21,4 +22,18 @@ class TripViewSet(viewsets.ModelViewSet):
         return Response({"message": "Trips fetched successfully."})
     
 
+class ActivitiesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Activities
+        fields = "__all__"
+        
+class ActivitiesViewSet(viewsets.ModelViewSet):
+    queryset = Activities.objects.all()
+    serializer_class = ActivitiesSerializer
 
+    @action(detail=False, methods=['post'])
+    def fetch(self,request):
+        fetch_activities()
+        return Response(
+            {'message':'Activities fetched successfully.'}
+        )

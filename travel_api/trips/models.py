@@ -10,3 +10,10 @@ class Trip(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Activities(models.Model):
+    url = models.CharField(max_length=500, unique=True, null=True, blank=True)
+    title = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
